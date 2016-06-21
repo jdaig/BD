@@ -1,0 +1,42 @@
+1.-
+
+INSERT INTO Orders
+ (OrderID, CustomerID, OrderDate, RequiredDate, ShippedDate)
+ VALUES
+ ('21', '1', '2012-02-02', '2012-03-03', '2012-02-03');
+
+INSERT INTO OrderDetails
+ (OrderDetailID, OrderID, ProductID, UnitPrice, Quantity)
+ VALUES
+ ('48', '21', '4', '10.0', '20'),
+ ('49', '21', '5', '1.0', '40');
+
+ 2.-
+
+INSERT INTO Customers
+ (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, State)
+ VALUES
+ ('6', 'Floor2 Co.', 'Peter Parker', 'Purchaser', '2012 Lavanda Street', 'Detroit', 'NY');
+
+SELECT * FROM Orders
+WHERE CustomerID = 3;
+
+UPDATE Orders
+SET CustomerID = 6
+WHERE OrderID = 18
+OR OrderID = 20;
+
+3.-
+
+SELECT * FROM Orders
+WHERE CustomerID=5;
+
+DELETE FROM OrderDetails
+WHERE OrderID = 13
+OR OrderID = 17;   
+
+DELETE FROM Orders
+WHERE CustomerID = 5;
+
+DELETE FROM Customers
+WHERE CustomerID = 5;

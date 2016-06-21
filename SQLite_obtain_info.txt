@@ -1,0 +1,79 @@
+1.-
+
+SELECT count(customerid) FROM Orders
+Where customerid = 3;
+
+2.-
+
+SELECT count(*) FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+WHERE contactname = 'Jim Wood';
+
+
+3.-
+
+SELECT count(CustomerID) FROM Orders
+WHERE CustomerID=5;
+
+SELECT count(CompanyName) FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+WHERE CompanyName='Slots Carpet';
+
+4.-
+
+SELECT CompanyName,count(Orders.CustomerID) AS TotalOrders FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY CompanyName
+ORDER BY COUNT(Orders.CustomerID) DESC;
+
+5.-
+
+SELECT CompanyName,count(Orders.CustomerID) AS TotalOrders FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY CompanyName
+ORDER BY COUNT(Orders.CustomerID) ASC;
+
+6.-
+
+SELECT CompanyName,MAX(y.num)
+  FROM (SELECT CompanyName,COUNT(Orders.CustomerID) AS num
+          FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY CompanyName ) y
+
+SELECT MAX(y.num)
+  FROM (SELECT COUNT(Orders.CustomerID) AS num
+  FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY CompanyName
+ORDER BY COUNT(Orders.CustomerID) ASC) y;
+
+7.-
+
+SELECT CompanyName,SUM(OrderDetails.Quantity) FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID
+GROUP BY CompanyName
+ORDER BY SUM(OrderDetails.Quantity) DESC;
+
+8.-
+
+SELECT OrderID,UnitPrice*Quantity AS Pesos FROM OrderDetails
+WHERE OrderID = 4
+GROUP BY OrderID;
+
+9.-
+
+SELECT OrderID,SUM(UnitPrice*Quantity) AS Pesos FROM OrderDetails
+GROUP BY OrderID;
+
+10.-
+
+SELECT OrderID,SUM(UnitPrice*Quantity) AS Pesos FROM OrderDetails
+GROUP BY OrderID
+HAVING Pesos > 1000;
+
+11.-
+
+SELECT OrderID,SUM(Quantity) AS Pesos FROM OrderDetails
+GROUP BY OrderID;
